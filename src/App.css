@@ -1,0 +1,13 @@
+.empty-block {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 40px;
+  padding-bottom: 40px;
+  background: #ebebeb;
+  color: #000;
+  font-weight: 700;
+  font-size: 140px;
+  line-height: 170px;
+}
