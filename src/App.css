@@ -1,5 +1,6 @@
 .empty-block {
   width: 100vw;
+  hyphens: auto;
   height: 100vh;
   display: flex;
   align-items: flex-end;

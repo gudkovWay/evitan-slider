@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+@media screen and (max-width: 568px) {
+  .pinBox {
+    justify-content: flex-start;
+  }
+}
+
 .content {
   height: 50%;
   width: 50%;
