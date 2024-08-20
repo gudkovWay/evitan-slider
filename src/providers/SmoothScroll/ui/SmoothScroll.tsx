@@ -1,4 +1,4 @@
-import { FC, ReactNode, useLayoutEffect } from "react";
+import { FC, ReactNode } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
 
 interface SmoothScrollProps {
