@@ -17,7 +17,7 @@ export const CardSlider: FC<CardSliderProps> = ({ cards }) => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const contents = gsap.utils.toArray(".content");
-      gsap.set(contents, { autoAlpha: 0, y: 500 });
+      gsap.set(contents, { autoAlpha: 1, y: 500 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -31,9 +31,9 @@ export const CardSlider: FC<CardSliderProps> = ({ cards }) => {
 
       contents.forEach((content) => {
         tl.to(content, {
-          keyframes: { y: [100, 75], autoAlpha: [0.5, 1] },
+          keyframes: { y: [-25, 50], autoAlpha: [1] },
           ease: "power3.inOut",
-          autoAlpha: 0,
+          autoAlpha: 1,
           duration: 1,
         });
       });
