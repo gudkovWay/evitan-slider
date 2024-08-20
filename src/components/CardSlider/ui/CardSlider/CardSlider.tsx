@@ -1,23 +1,18 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 
+import useCardRefs from "@/features/hooks/useCardRefs";
+import { cards } from "@/assets/cards";
 import "./CardSlider.css";
 
-const cards = [
-  { id: 1, text: "1", background: "violet" },
-  { id: 2, text: "2", background: "red" },
-  { id: 3, text: "3", background: "blue" },
-  { id: 4, text: "4", background: "green" },
-  { id: 5, text: "5", background: "yellow" },
-];
+interface CardSliderProps {
+  cards: typeof cards;
+}
 
-export const CardSlider = () => {
-  gsap.registerPlugin(ScrollTrigger);
-
-  const component = useRef();
-  const pinSlider = useRef();
-  const cardsRef = useRef(cards.map((card) => ({ ...card, ref: useRef() })));
+export const CardSlider: FC<CardSliderProps> = ({ cards }) => {
+  const component = useRef<HTMLElement | null>(null);
+  const pinSlider = useRef<HTMLDivElement | null>(null);
+  const cardsRef = useCardRefs(cards);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -56,12 +51,12 @@ export const CardSlider = () => {
           className="pinSlider smooth-content"
           style={{ height: "50vh", background: "#fff" }}
         >
-          {cardsRef.current.map((card) => (
+          {cards.map((card, idx) => (
             <div
               key={card.id}
               className="content"
               style={{ background: card.background }}
-              ref={card.ref}
+              ref={cardsRef.current[idx]}
             >
               {card.text}
             </div>
