@@ -1,26 +1,15 @@
 import { FC, ReactNode, useLayoutEffect } from "react";
-import gsap from "gsap";
-import ScrollSmoother from "gsap-trial/ScrollSmoother";
+import { ReactLenis, useLenis } from "lenis/react";
 
-export const SmoothScroll: FC<{ children: ReactNode }> = ({ children }) => {
-  gsap.registerPlugin(ScrollSmoother);
+interface SmoothScrollProps {
+  children: ReactNode;
+}
 
-  useLayoutEffect(() => {
-    const smoother = ScrollSmoother.create({
-      wrapper: ".smooth-wrapper",
-      content: ".smooth-content",
-      smooth: 1,
-      effects: true,
-    });
+export const SmoothScroll: FC<SmoothScrollProps> = ({ children }) => {
+  const lenis = useLenis((e) => {
+    // console.log(e);
+    e.animate.duration = 2.5;
+  });
 
-    return () => {
-      smoother.kill();
-    };
-  }, []);
-
-  return (
-    <div className="smooth-wrapper">
-      <div className="smooth-content">{children}</div>
-    </div>
-  );
+  return <ReactLenis root>{children}</ReactLenis>;
 };
